@@ -1,12 +1,13 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
 import { TezosToolkit, WalletContract } from "@taquito/taquito";
+import {char2Bytes} from '@taquito/utils';
 
 interface UpdateContractProps {
   contract: WalletContract | any;
   setUserBalance: Dispatch<SetStateAction<any>>;
   Tezos: TezosToolkit;
   userAddress: string;
-  setStorage: Dispatch<SetStateAction<number>>;
+  setStorage: Dispatch<SetStateAction<any>>;
 }
 
 const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStorage }: UpdateContractProps) => {
@@ -16,10 +17,19 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
   const increment = async (): Promise<void> => {
     setLoadingIncrement(true);
     try {
-      const op = await contract.methods.increment(1).send();
+      // const op = await contract.methods.increment(1).send();
+      // await op.confirmation();
+      const op = await contract.methods.mint(
+        [{
+          to_: userAddress,
+          metadata: {
+            "" : char2Bytes("https://ipfs.io/ipfs/Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu")//char2Bytes("ipfs://Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu")//char2Bytes("ipfs://QmXcd5NZQySrErQqStVAaX5NPB7ioWMsgdqGNBCMzxqECD")//char2Bytes("ipfs://QmT5YA6LnMHMStjt8pJ6JATsmKMZChLe4uC5hrN9RPdSYg")
+          }
+        }]
+      ).send()
       await op.confirmation();
       const newStorage: any = await contract.storage();
-      if (newStorage) setStorage(newStorage.toNumber());
+      if (newStorage) setStorage(newStorage);
       setUserBalance(await Tezos.tz.getBalance(userAddress));
     } catch (error) {
       console.log(error);
@@ -31,8 +41,8 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
   const decrement = async (): Promise<void> => {
     setLoadingDecrement(true);
     try {
-      const op = await contract.methods.decrement(1).send();
-      await op.confirmation();
+      // const op = await contract.methods.decrement(1).send();
+      // await op.confirmation();
       const newStorage: any = await contract.storage();
       if (newStorage) setStorage(newStorage.toNumber());
       setUserBalance(await Tezos.tz.getBalance(userAddress));
@@ -53,7 +63,7 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
           </span>
         ) : (
           <span>
-            <i className="fas fa-plus"></i>&nbsp; Increment by 1
+            <i className="fas fa-plus"></i>&nbsp; Mint an NFT
           </span>
         )}
       </button>

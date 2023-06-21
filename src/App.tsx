@@ -24,13 +24,13 @@ const App = () => {
   const [wallet, setWallet] = useState<any>(null);
   const [userAddress, setUserAddress] = useState<string>("");
   const [userBalance, setUserBalance] = useState<number>(0);
-  const [storage, setStorage] = useState<number>(0);
+  const [storage, setStorage] = useState<any>({});
   const [copiedPublicToken, setCopiedPublicToken] = useState<boolean>(false);
   const [beaconConnection, setBeaconConnection] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
   // Ghostnet Increment/Decrement contract
-  const contractAddress: string = "KT1QMGSLynvwwSfGbaiJ8gzWHibTCweCGcu8";
+  const contractAddress: string = "KT195GurVSXi8rFB3Xjcrkd83R2E7amZ39Sc";//"KT1QMGSLynvwwSfGbaiJ8gzWHibTCweCGcu8";
 
   const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");
@@ -123,7 +123,7 @@ const App = () => {
             ) : (
               <div id="increment-decrement">
                 <h3 className="text-align-center">
-                  Current counter: <span>{storage}</span>
+                  Inventory: <span> { JSON.stringify(storage) }</span>
                 </h3>
                 <UpdateContract
                   contract={contract}
