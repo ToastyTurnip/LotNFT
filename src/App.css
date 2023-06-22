@@ -55,12 +55,6 @@ header {
   padding-top: 20px;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 0px 10px 20px 10px;
-}
 
 .button {
   margin-top: 0px;
@@ -187,4 +181,270 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+
+.homepage {
+  font-family: var(--font-family);
+  max-width: 95%;
+  margin-left: 15%;
+  margin-top: 0px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+
+.menu-panel {
+  background-color: #1a1a1a;
+  color: white;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 220px;
+  position: fixed;
+  left: 0;
+  top: 31px;
+  bottom: 0;
+  margin-top: 10px;
+  
+}
+
+.menu-link {
+  background-color: transparent;
+  width: 220px;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 17px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.menu-link:hover {
+  background-color: #858a9b;
+}
+
+.tab-content {
+  flex: 1;
+  margin-left: 220px;
+  padding-top: 30px;
+}
+
+.tab-bar {
+  background-color: rgb(5, 23, 82);
+  color:white;
+  padding: 11px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.tab-title {
+  font-size: 33px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+  margin-left: 28px;
+  margin-right: 65px;
+  letter-spacing: 0px;
+}
+
+.connect-wallet {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.land-lot-image-crop {
+  width: 132px;
+  height: 132px;
+  overflow: hidden;
+}
+
+.land-lot-image-crop img {
+  width: 99%;
+  height: 99%;
+  object-fit: cover;
+}
+
+.land-lots-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  background-color: white;
+  margin-left: 0px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  margin-top:79px;
+}
+
+.land-lot-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.land-lot-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: #1a1a1a;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.transfer-page-container {
+  margin-top: 20px;
+  font-family: var(--font-family);
+}
+
+.transfer-page-title {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.form-heading {
+  font-size: 18px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  margin-bottom: 10px;
+}
+
+.form-label {
+  color: #1a1a1a;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  padding: 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.transfer-button {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.transfer-button:hover {
+  background-color: #858a9b;
+}
+
+.mint-popup,
+.burn-popup,
+.transfer-popup {
+  background-color: #fff;
+  padding: 15px;
+  width: 450px;
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  box-shadow: 0 3px 8px rgb(75, 77, 79); 
+}
+
+.connect-wallet {
+  background-color: none;
+  color: #fbf9f9;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin-top: 480px;
+  margin-left: 15px;
+  font-size: 12px;
+  cursor: pointer;
+  width: 160px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.connect-wallet:hover {
+  border-color: #858a9b;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.owned-tokens-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.owned-tokens-table th,
+.owned-tokens-table td {
+  padding: 8px;
+  border: 1px solid #d4dae1;
+  text-align: left;
+}
+
+.owned-tokens-table th {
+  background-color: #d4dae1;
+}
+
+/* .owned-tokens-table tbody tr:nth-child(even) {
+  background-color: #858a9b;
+} */
+
+.owned-tokens-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+a{
+  margin-right: 15px;
+}
+
+.tez{
+  margin-top: 20px;
+  margin-left: 55px;
+}
+.disc{
+  margin-left: 20px;
+}
+.conn{
+  margin-left: 160px;
 }
