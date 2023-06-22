@@ -1,6 +1,7 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
 import { TezosToolkit, WalletContract } from "@taquito/taquito";
 import {char2Bytes} from '@taquito/utils';
+import "../App.css";
 
 interface UpdateContractProps {
   contract: WalletContract | any;
@@ -56,27 +57,14 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
   if (!contract && !userAddress) return <div>&nbsp;</div>;
   return (
     <div className="buttons">
-      <button className="button" disabled={loadingIncrement} onClick={increment}>
-        {loadingIncrement ? (
-          <span>
-            <i className="fas fa-spinner fa-spin"></i>&nbsp; Please wait
-          </span>
-        ) : (
-          <span>
-            <i className="fas fa-plus"></i>&nbsp; Mint an NFT
-          </span>
-        )}
+      <button className="menu-link" onClick={increment}>
+        Mint
       </button>
-      <button className="button" onClick={decrement}>
-        {loadingDecrement ? (
-          <span>
-            <i className="fas fa-spinner fa-spin"></i>&nbsp; Please wait
-          </span>
-        ) : (
-          <span>
-            <i className="fas fa-minus"></i>&nbsp; Decrement by 1
-          </span>
-        )}
+      <button className="menu-link">
+        Transfer
+      </button>
+      <button className="menu-link">
+        Burn
       </button>
     </div>
   );
