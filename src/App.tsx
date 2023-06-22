@@ -30,8 +30,7 @@ const App = () => {
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
   // Ghostnet Increment/Decrement contract
-  const contractAddress: string = "KT195GurVSXi8rFB3Xjcrkd83R2E7amZ39Sc";//"KT1QMGSLynvwwSfGbaiJ8gzWHibTCweCGcu8";
-
+  const contractAddress: string = "KT1SKXdiZHysT11gc6HbSQoHHV2GmnN1hj84";//"KT1QMGSLynvwwSfGbaiJ8gzWHibTCweCGcu8";
   const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");
     qr.addData(publicToken || "");
@@ -40,6 +39,8 @@ const App = () => {
     return { __html: qr.createImgTag(4) };
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   if (publicToken && (!userAddress || isNaN(userBalance))) {
     return (
       <div className="main-box">
@@ -91,67 +92,21 @@ const App = () => {
     );
   } else if (userAddress && !isNaN(userBalance)) {
     return (
-      <div className="main-box">
-        <h1>Taquito Boilerplate</h1>
-        <div id="tabs">
-          <div
-            id="transfer"
-            className={activeTab === "transfer" ? "active" : ""}
-            onClick={() => setActiveTab("transfer")}
-          >
-            Make a transfer
-          </div>
-          <div
-            id="contract"
-            className={activeTab === "contract" ? "active" : ""}
-            onClick={() => setActiveTab("contract")}
-          >
-            Interact with a contract
-          </div>
-        </div>
-        <div id="dialog">
-          <div id="content">
-            {activeTab === "transfer" ? (
-              <div id="transfers">
-                <h3 className="text-align-center">Make a transfer</h3>
-                <Transfers
-                  Tezos={Tezos}
-                  setUserBalance={setUserBalance}
-                  userAddress={userAddress}
-                />
-              </div>
-            ) : (
-              <div id="increment-decrement">
-                <h3 className="text-align-center">
-                  Inventory: <span> { JSON.stringify(storage) }</span>
-                </h3>
-                <UpdateContract
+      <div className="homepage">
+        <div className={`menu-panel ${isMenuOpen ? 'open' : ''}`}>
+          
+          <UpdateContract
                   contract={contract}
                   setUserBalance={setUserBalance}
                   Tezos={Tezos}
                   userAddress={userAddress}
                   setStorage={setStorage}
-                />
-              </div>
-            )}
-            <p>
-              <i className="far fa-file-code"></i>&nbsp;
-              <a
-                href={`https://better-call.dev/ghostnet/${contractAddress}/operations`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {contractAddress}
-              </a>
-            </p>
-            <p>
-              <i className="far fa-address-card"></i>&nbsp; {userAddress}
-            </p>
-            <p>
-              <i className="fas fa-piggy-bank"></i>&nbsp;
-              {(userBalance / 1000000).toLocaleString("en-US")} ꜩ
-            </p>
-          </div>
+          />
+          <p className="tez">
+            <i className="fas fa-piggy-bank"></i>&nbsp;
+            {(userBalance / 1000000).toLocaleString("en-US")} ꜩ
+          </p>
+          <div className="disc">
           <DisconnectButton
             wallet={wallet}
             setPublicToken={setPublicToken}
@@ -161,44 +116,36 @@ const App = () => {
             setTezos={setTezos}
             setBeaconConnection={setBeaconConnection}
           />
+          </div>
         </div>
-        <div id="footer">
-          <img src="built-with-taquito.png" alt="Built with Taquito" />
+        <div className="tab-bar">
+        <h1 className="tab-title" style={{ fontFamily: 'Montserrat' }}>LOTNFT</h1>
+        <p>
+          <i className="far fa-file-code"></i>&nbsp;
+            <a
+              href={`https://better-call.dev/ghostnet/${contractAddress}/operations`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {contractAddress}
+            </a>
+        </p>
+        <p>
+          <i className="far fa-address-card"></i>&nbsp; {userAddress}
+        </p>
         </div>
       </div>
     );
   } else if (!publicToken && !userAddress && !userBalance) {
     return (
       <div className="main-box">
-        <div className="title">
-          <h1>Taquito React template</h1>
-          <a href="https://app.netlify.com/start/deploy?repository=https://github.com/ecadlabs/taquito-react-template">
-            <img
-              src="https://www.netlify.com/img/deploy/button.svg"
-              alt="netlify-button"
-            />
-          </a>
-        </div>
+        
         <div id="dialog">
-          <header>Welcome to the Taquito React template!</header>
-          <div id="content">
-            <p>Hello!</p>
-            <p>
-              This is a template Tezos dApp built using Taquito. It's a starting
-              point for you to hack on and build your own dApp for Tezos.
-              <br />
-              If you have not done so already, go to the{" "}
-              <a
-                href="https://github.com/ecadlabs/taquito-react-template"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Taquito React template Github page
-              </a>{" "}
-              and click the <em>"Use this template"</em> button.
-            </p>
-            <p>Go forth and Tezos!</p>
+          <header>LOTNFT</header>
+          <div id="content"> 
+              Connect your temple wallet!
           </div>
+          <div className="conn">
           <ConnectButton
             Tezos={Tezos}
             setContract={setContract}
@@ -211,9 +158,7 @@ const App = () => {
             setBeaconConnection={setBeaconConnection}
             wallet={wallet}
           />
-        </div>
-        <div id="footer">
-          <img src="built-with-taquito.png" alt="Built with Taquito" />
+          </div>
         </div>
       </div>
     );
